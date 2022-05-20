@@ -1,0 +1,110 @@
+<p-toast></p-toast>
+<div class="admin-page" *ngIf="order">
+            <p-card header="View Order" subheader="You can edit order status here">
+                        <div class="grid">
+                                    <div class="col-12">
+                                                <p-toolbar>
+                                                            <button pButton type="button" label="Back"
+                                                                        icon="pi pi-arrow-left"
+                                                                        class="p-button-secondary" (click)="goBack()">
+                                                            </button>
+                                                </p-toolbar>
+                                    </div>
+                        </div>
+                        <p-fieldset styleClass="mb-4" legend="Order Details" [toggleable]="true">
+                                    <div class="grid">
+                                                <div class="col-12 md:col-4 lg:col-3">
+                                                            <h5>Order Id</h5>
+                                                            <p>{{order.id}}</p>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-3">
+                                                            <h5>Order Date</h5>
+                                                            <p>{{order.dateOrdered | date:'medium'}}</p>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-3">
+                                                            <h5>Order Status</h5>
+                                                            <p-dropdown [options]="orderStatuses"
+                                                                        [(ngModel)]="selectedStatus" optionLabel="name"
+                                                                        optionValue="id"
+                                                                        (onChange)="onStatusChange($event)">
+                                                            </p-dropdown>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-3">
+                                                            <h5>Order Total Price</h5>
+                                                            <p>{{order.totalPrice | currency}}</p>
+                                                </div>
+                                    </div>
+                        </p-fieldset>
+                        <p-fieldset styleClass="mb-4" legend="Order Items" [toggleable]="true">
+                                    <div class="grid">
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            <h5>Name</h5>
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            <h5>Brand</h5>
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            <h5>Category</h5>
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            <h5>Price</h5>
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            <h5>Quantity</h5>
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            <h5>Subtotal</h5>
+                                                </div>
+                                    </div>
+                                    <div class="grid" *ngFor="let orderItem of orderItems">
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            {{orderItem.product.name}}
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            {{orderItem.product.brand}}
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            {{orderItem.product.category.name}}
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            {{orderItem.product.price | currency}}
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            {{orderItem.quantity}}
+                                                </div>
+                                                <div class="col-12 md:col-2 lg:col-2">
+                                                            {{orderItem.product.price * orderItem.quantity
+                                                            | currency}}
+                                                </div>
+                                    </div>
+                                    <p-divider></p-divider>
+                                    <div class="grid font-bold" [ngStyle]="{color:'var(--green-600'}">
+                                                <div class="col-2 col-offset-8">Total Price</div>
+                                                <div class="col-2">{{order.totalPrice | currency}}</div>
+                                    </div>
+                        </p-fieldset>
+                        <p-fieldset styleClass="mb-4" legend="Order Address" [toggleable]="true">
+                                    <div class="grid">
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                            <h5>Order Address</h5>
+                                                            <p>
+                                                                        {{order.shippingAddress1}}
+                                                                        {{order.shippingAddress2}}
+                                                                        {{order.zip}} {{order.city}}
+                                                                        {{order.country}}
+                                                            </p>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                            <h5>Customer Info</h5>
+                                                            <p>{{order.user?.name}}</p>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                            <h5>Contact Info</h5>
+                                                            <p>{{order.phone}}</p>
+                                                </div>
+                                                <div class="col-12 md:col-4 lg:col-2">
+                                                </div>
+                                    </div>
+                        </p-fieldset>
+            </p-card>
+</div>

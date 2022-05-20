@@ -1,0 +1,80 @@
+<p-toast></p-toast>
+<div class="admin-page">
+            <p-card [header]="editMode ? 'Edit Categories':'Add Categories' " subheader="Add and edit categories">
+                        <div class="grid">
+                                    <div class="col-12">
+                                                <p-toolbar>
+                                                            <div class="p-toolbar-group-left"></div>
+                                                            <div class="p-toolbar-group-right">
+                                                                        <button pButton type="button"
+                                                                                    [label]="editMode ? 'Update' : 'Create' "
+                                                                                    icon="pi pi-plus"
+                                                                                    class="p-button-primary mr-2"
+                                                                                    (click)="onSubmit()">
+                                                                        </button>
+                                                                        <button pButton type="button" label="Back"
+                                                                                    icon="pi pi-arrow-left"
+                                                                                    class="p-button-secondary"
+                                                                                    (click)="goBack()">
+                                                                        </button>
+                                                            </div>
+                                                </p-toolbar>
+                                    </div>
+                        </div>
+                        <div class="grid">
+                                    <div class="col-12">
+                                                <form [formGroup]="form">
+                                                            <div class="card">
+                                                                        <div class="formgrid grid">
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="name">Name</label>
+                                                                                                <input id="name"
+                                                                                                            type="text"
+                                                                                                            pInputText
+                                                                                                            formControlName="name"
+                                                                                                            aria-describedby="name"
+                                                                                                            [ngClass]="isSubmitted && categoryForm['name'].errors ? 'is-invalid w-full': 'w-full'" />
+                                                                                                <small id="name"
+                                                                                                            *ngIf="isSubmitted && categoryForm['name'].errors && categoryForm['name'].touched"
+                                                                                                            class="p-error block">Name
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="icon">Icon</label>
+                                                                                                <input id="icon"
+                                                                                                            type="text"
+                                                                                                            pInputText
+                                                                                                            formControlName="icon"
+                                                                                                            aria-describedby="icon"
+                                                                                                            [ngClass]="isSubmitted && categoryForm['icon'].errors ? 'is-invalid w-full': 'w-full'" />
+                                                                                                <small id="icon"
+                                                                                                            *ngIf="isSubmitted && categoryForm['icon'].errors && categoryForm['icon'].touched"
+                                                                                                            class="p-error block">Icon
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="color">Color</label>
+                                                                                                <div class="w-full">
+                                                                                                            <p-colorPicker
+                                                                                                                        id="color"
+                                                                                                                        formControlName="color">
+                                                                                                            </p-colorPicker>
+                                                                                                </div>
+                                                                                                <small id="color"
+                                                                                                            *ngIf="isSubmitted && categoryForm['color'].errors && categoryForm['color'].touched"
+                                                                                                            class="p-error block">Color
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+                                                                        </div>
+                                                            </div>
+                                                </form>
+                                    </div>
+                        </div>
+            </p-card>
+</div>

@@ -1,0 +1,151 @@
+<div class="checkout-page">
+            <div>
+                        <button pButton type="button" label="Back to cart" icon="pi pi-arrow-left"
+                                    class="p-button-secondary" (click)="goBack()"></button>
+            </div>
+            <div class="grid checkout-form">
+                        <div class="col-8">
+                                    <form [formGroup]="form">
+                                                <div>
+                                                            <div class="formgrid grid p-fluid">
+                                                                        <div class="field col">
+                                                                                    <label for="name">Name</label>
+                                                                                    <input id="name" type="text"
+                                                                                                pInputText
+                                                                                                formControlName="name"
+                                                                                                aria-describedby="name"
+                                                                                                class="w-full" />
+                                                                                    <small id="name"
+                                                                                                *ngIf="isSubmitted && checkoutForm['name'].errors"
+                                                                                                class="p-error block">Name
+                                                                                                is not
+                                                                                                available.</small>
+                                                                        </div>
+                                                                        <div class="field col">
+                                                                                    <label for="email">Email</label>
+                                                                                    <input pInputText id="email"
+                                                                                                type="email"
+                                                                                                formControlName="email"
+                                                                                                aria-describedby="email"
+                                                                                                class="w-full" />
+                                                                                    <small id="email"
+                                                                                                class="p-error block"
+                                                                                                *ngIf="isSubmitted && checkoutForm['email'].errors">
+                                                                                                <span id="email"
+                                                                                                            *ngIf="checkoutForm['email'].errors['required']"
+                                                                                                            class="p-error block">Email
+                                                                                                            Email is
+                                                                                                            required
+                                                                                                </span>
+                                                                                                <span id="email"
+                                                                                                            class="p-error block"
+                                                                                                            *ngIf="checkoutForm['email'].errors['email']">
+                                                                                                            Email is
+                                                                                                            invalid
+                                                                                                </span>
+                                                                                    </small>
+                                                                        </div>
+                                                                        <div class="field col">
+                                                                                    <label for="phone">Phone</label>
+                                                                                    <input pInputText
+                                                                                                formControlName="phone"
+                                                                                                inputId="phone"
+                                                                                                class="w-full" />
+                                                                                    <small id="phone"
+                                                                                                *ngIf="isSubmitted && checkoutForm['phone'].errors"
+                                                                                                class="p-error block">Phone
+                                                                                                is not
+                                                                                                available.</small>
+                                                                        </div>
+                                                            </div>
+                                                            <div class="formgrid grid p-fluid">
+                                                                        <div class="field col">
+                                                                                    <label for="street">Street</label>
+                                                                                    <input pInputText id="street"
+                                                                                                formControlName="street"
+                                                                                                aria-describedby="street" />
+                                                                                    <small id="street"
+                                                                                                *ngIf="isSubmitted && checkoutForm['street'].errors"
+                                                                                                class="p-error block">Street
+                                                                                                is not
+                                                                                                available.</small>
+                                                                        </div>
+                                                                        <div class="field col">
+                                                                                    <label
+                                                                                                for="apartment">Apartment</label>
+                                                                                    <input pInputText
+                                                                                                formControlName="apartment"
+                                                                                                mode="decimal"
+                                                                                                inputId="apartment"
+                                                                                                class="w-full" />
+                                                                                    <small id="apartment"
+                                                                                                *ngIf="isSubmitted && checkoutForm['apartment'].errors"
+                                                                                                class="p-error block">Apartment
+                                                                                                is not
+                                                                                                available.</small>
+                                                                        </div>
+                                                                        <div class="field col">
+                                                                                    <label for="city">City</label>
+                                                                                    <input pInputText
+                                                                                                formControlName="city"
+                                                                                                mode="decimal"
+                                                                                                inputId="city"
+                                                                                                class="w-full" />
+                                                                                    <small id="city"
+                                                                                                *ngIf="isSubmitted && checkoutForm['city'].errors"
+                                                                                                class="p-error block">City
+                                                                                                is not
+                                                                                                available.</small>
+                                                                        </div>
+                                                            </div>
+                                                            <div class="formgrid grid p-fluid">
+                                                                        <div class="field col">
+                                                                                    <label for="zip">Zip</label>
+                                                                                    <input pInputText
+                                                                                                formControlName="zip"
+                                                                                                mode="decimal"
+                                                                                                inputId="zip"
+                                                                                                class="w-full"
+                                                                                                maxlength="6"
+                                                                                                placeholder="442704" />
+                                                                                    <small id="zip"
+                                                                                                *ngIf="isSubmitted && checkoutForm['zip'].errors"
+                                                                                                class="p-error block">Zip
+                                                                                                is not
+                                                                                                available.</small>
+                                                                        </div>
+                                                                        <div class="field col">
+                                                                                    <label for="country">Country</label>
+                                                                                    <p-dropdown id="category"
+                                                                                                [options]="countries"
+                                                                                                formControlName="country"
+                                                                                                aria-describedby="country"
+                                                                                                optionLabel="name"
+                                                                                                optionValue="id"
+                                                                                                [filter]="true"
+                                                                                                filterBy="name"
+                                                                                                placeholder="Select a country">
+                                                                                    </p-dropdown>
+
+                                                                                    <div>
+                                                                                                <small id="country"
+                                                                                                            *ngIf="isSubmitted && checkoutForm['country'].errors"
+                                                                                                            class="p-error block">Country
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+                                                                        </div>
+                                                            </div>
+                                                </div>
+                                    </form>
+                        </div>
+                        <div class="col-4">
+                                    <orders-order-summary></orders-order-summary>
+                                    <div class="checkout-button">
+                                                <button pButton type="button" label="Place Order"
+                                                            class="p-button-primary mr-2"
+                                                            (click)="placeOrder()"></button>
+                                    </div>
+                        </div>
+            </div>
+</div>

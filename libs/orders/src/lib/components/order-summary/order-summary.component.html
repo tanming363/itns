@@ -1,0 +1,23 @@
+<div class="order-summary">
+            <div class="summary-price">
+                        <span>Items Price</span>
+                        <span>{{totalPrice | currency}}</span>
+            </div>
+
+            <div class="summary-price">
+                        <span>Packing and Shipping</span>
+                        <div class="free">Free</div>
+            </div>
+
+            <div class="to-checkout">
+                        <div class="summary-price">
+                                    <span>Total Price</span>
+                                    <span>{{totalPrice | currency}}</span>
+                        </div>
+                        <div class="checkout-button">
+                                    <button pButton pRipple type="button" label="Checkout" class="p-button-rounded"
+                                                (click)="onCheckOut()" *ngIf="!isCheckout"></button>
+                        </div>
+            </div>
+
+</div>

@@ -24,7 +24,14 @@
             "prefix": "orders",
             "style": "kebab-case"
           }
-        ]
+        ],
+        "no-restricted-syntax": [
+          "error",
+          "ForInStatement",
+          "LabeledStatement",
+          "WithStatement"
+        ],
+        "@typescript-eslint/no-explicit-any": "off"
       }
     },
     {

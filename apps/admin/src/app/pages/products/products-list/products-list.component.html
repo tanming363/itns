@@ -1,0 +1,81 @@
+<p-toast></p-toast>
+<div style="display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 1;" *ngIf="show">
+    <p-progressSpinner></p-progressSpinner>
+</div>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000" rejectButtonStyleClass="p-button-text">
+</p-confirmDialog>
+<div class="admin-page">
+    <p-card header="Products" subheader="List of all products">
+        <div class="grid">
+            <div class="col-12">
+                <p-toolbar>
+                    <div class="p-toolbar-group-left">
+                        <p-button label="New" icon="pi pi-plus" styleClass="p-button-success" routerLink="form">
+                        </p-button>
+                    </div>
+                </p-toolbar>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-12">
+                <p-table [value]="products" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+                    [rowsPerPageOptions]="[10,25,50]" styleClass="p-datatable-gridlines" responsiveLayout="scroll">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th pSortableColumn="name">Name
+                                <p-sortIcon field="name">
+                                </p-sortIcon>
+                            </th>
+                            <th>Image</th>
+                            <th pSortableColumn="price">Price
+                                <p-sortIcon field="price">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="stock">Stock
+                                <p-sortIcon field="stock">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="category">
+                                Category
+                                <p-sortIcon field="category">
+                                </p-sortIcon>
+                            </th>
+                            <th pSortableColumn="created">
+                                Created
+                                <p-sortIcon field="created">
+                                </p-sortIcon>
+                            </th>
+                            <th>Action</th>
+                        </tr>
+                    </ng-template>
+
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td>{{product.name}}</td>
+                            <td>
+                                <img height="100" [src]="product.image" [alt]="product.image">
+                            </td>
+                            <td>{{product.price}}</td>
+                            <td>{{product.countInStock}}</td>
+                            <td>{{product.category.name}}</td>
+                            <td>{{product.dateCreated |
+                                date:'medium'}}</td>
+                            <td>
+                                <button pButton pRipple type="button" icon="pi pi-pencil"
+                                    class="p-button-rounded p-button-text" (click)="onEditProduct(product.id)"></button>
+                                <button pButton pRipple type="button" icon="pi pi-trash"
+                                    class="p-button-rounded p-button-text p-button-danger p-button-text"
+                                    (click)="onDeleteProduct(product.id)"></button>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </div>
+    </p-card>
+</div>

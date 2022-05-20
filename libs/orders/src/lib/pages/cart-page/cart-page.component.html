@@ -1,0 +1,64 @@
+<div class="cart-page">
+            <div class="grid">
+                        <div class="col-8">
+                                    <div>
+                                                <button pButton pRipple type="button" label="Continue Shopping"
+                                                            class="p-button-rounded" icon="pi pi-arrow-left"
+                                                            (click)="backToShop()"></button>
+                                    </div>
+                                    <div>
+                                                <h4>My Cart: {{cartCount}} items</h4>
+                                    </div>
+                                    <div class="cart-shipping mb-5">
+                                                Shipping after the payment, Delivery time:1 to 4 working days
+                                    </div>
+
+                                    <div class="cart-item mb-2" *ngFor="let cartItem of cartItemsDetails">
+                                                <div class="grid p-fluid">
+                                                            <div class="col-2 cart-item-image">
+                                                                        <img [src]="cartItem.product.image"
+                                                                                    [alt]="cartItem.product.name">
+                                                            </div>
+                                                            <div class="col-7">
+                                                                        <div class="cart-item-name">
+
+                                                                        </div>
+                                                                        <div class="cart-item-price">
+                                                                                    {{cartItem.product.price |
+                                                                                    currency}}
+                                                                        </div>
+                                                                        <div class="cart-item-remove">
+                                                                                    <button pButton pRipple
+                                                                                                type="button"
+                                                                                                icon="pi pi-trash"
+                                                                                                class="p-button-rounded p-button-danger"
+                                                                                                (click)="onDeleteCartItem(cartItem)"></button>
+                                                                        </div>
+                                                            </div>
+                                                            <div class="col-3">
+                                                                        <div class="cart-item-quantity">
+                                                                                    <p-inputNumber mode="decimal"
+                                                                                                [showButtons]="true"
+                                                                                                inputId="quantity"
+                                                                                                [min]="1" [max]="13"
+                                                                                                [(ngModel)]="cartItem.quantity"
+                                                                                                (onInput)="updateCartItemQuantity($event,cartItem)">
+                                                                                    </p-inputNumber>
+                                                                        </div>
+                                                                        <div class="cart-item-subtotal">
+                                                                                    Subtotal:
+                                                                                    <span
+                                                                                                class="cart-item-subtotal-value">{{
+                                                                                                cartItem.product.price*
+                                                                                                cartItem.quantity
+                                                                                                | currency}}</span>
+                                                                        </div>
+                                                            </div>
+                                                </div>
+                                    </div>
+                        </div>
+                        <div class="col-4">
+                                    <orders-order-summary></orders-order-summary>
+                        </div>
+            </div>
+</div>

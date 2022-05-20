@@ -1,0 +1,62 @@
+<div class="login-register">
+            <div class="login-register-panel">
+                        <div class="grid">
+                                    <div class="col-12 p-6">
+                                                <h2>Login</h2>
+                                                <form [formGroup]="loginFormGroup">
+                                                            <div class="formgrid grid p-fluid">
+                                                                        <div class="field col-12">
+                                                                                    <label for="email">Email</label>
+                                                                                    <input pInputText id="email"
+                                                                                                type="email"
+                                                                                                formControlName="email"
+                                                                                                aria-describedby="email"
+                                                                                                class="w-full"
+                                                                                                [ngClass]="{'ng-invalid ng-dirty': isSubmitted && loginForm['email'].errors }">
+                                                                                    <small id="email"
+                                                                                                class="p-error block"
+                                                                                                *ngIf="isSubmitted && loginForm['email'].errors">
+                                                                                                <span id="email"
+                                                                                                            *ngIf="loginForm['email'].errors['required']"
+                                                                                                            class="p-error block">
+                                                                                                            Email
+                                                                                                            is
+                                                                                                            required
+                                                                                                </span>
+                                                                                                <span id="email"
+                                                                                                            class="p-error block"
+                                                                                                            *ngIf="loginForm['email'].errors['email']">
+                                                                                                            Email
+                                                                                                            is
+                                                                                                            invalid
+                                                                                                </span>
+                                                                                    </small>
+                                                                        </div>
+                                                                        <div class="field col-12">
+                                                                                    <label
+                                                                                                for="password">Password</label>
+                                                                                    <p-password id="password"
+                                                                                                formControlName="password"
+                                                                                                placeholder="Password"
+                                                                                                [toggleMask]="true"
+                                                                                                [feedback]="false">
+                                                                                    </p-password>
+                                                                                    <small id="password"
+                                                                                                *ngIf="isSubmitted && loginForm['password'].errors"
+                                                                                                class="p-error block">Password
+                                                                                                is not
+                                                                                                available.</small>
+                                                                        </div>
+                                                                        <div class="col-12">
+                                                                                    <button pButton type="button"
+                                                                                                label="Submit"
+                                                                                                (click)="onSubmit()">
+                                                                                    </button>
+                                                                        </div>
+                                                                        <p-messages></p-messages>
+                                                            </div>
+                                                </form>
+                                    </div>
+                        </div>
+            </div>
+</div>

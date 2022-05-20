@@ -1,0 +1,125 @@
+<p-toast></p-toast>
+<div class="admin-page">
+  <p-card [header]="editMode ? 'Edit User' : 'Add User'" subheader="Add and edit User">
+    <div class="grid">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-right">
+            <button pButton type="button" label="Back" icon="pi pi-arrow-left" class="p-button-secondary"
+              (click)="goBack()"></button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12">
+        <form [formGroup]="form">
+          <div class="card">
+            <div class="formgrid grid p-fluid">
+              <div class="field col">
+                <label for="name">Name</label>
+                <input id="name" type="text" pInputText formControlName="name" aria-describedby="name" class="w-full"
+                  [ngClass]="{
+                    'ng-invalid ng-dirty':
+                      isSubmitted && userForm['name'].errors
+                  }" />
+                <small id="name" *ngIf="isSubmitted && userForm['name'].errors" class="p-error block">Name
+                  is not
+                  available.</small>
+              </div>
+              <div class="field col">
+                <label for="email">Email</label>
+                <input pInputText id="email" type="email" formControlName="email" aria-describedby="email"
+                  class="w-full" [ngClass]="{'ng-invalid ng-dirty': isSubmitted && userForm['email'].errors }">
+                <small id="email" class="p-error block" *ngIf="isSubmitted && userForm['email'].errors">
+                  <span id="email" *ngIf="userForm['email'].errors['required']" class="p-error block">Email
+                    Email
+                    is
+                    required
+                  </span>
+                  <span id="email" class="p-error block" *ngIf="userForm['email'].errors['email']">
+                    Email
+                    is
+                    invalid
+                  </span>
+                </small>
+              </div>
+              <div class="field col">
+                <label for="password">Password</label>
+                <p-password id="password" formControlName="password" placeholder="Password" [toggleMask]="true"
+                  class="w-full" [ngClass]="{ 'ng-invalid ng-dirty': isSubmitted && userForm['password'].errors}">
+                </p-password>
+                <small id="password" *ngIf="isSubmitted && userForm['password'].errors" class="p-error block">Password
+                  is not
+                  available.</small>
+              </div>
+            </div>
+            <div class="formgrid grid p-fluid">
+              <div class="field col">
+                <label for="phone">Phone</label>
+                <input pInputText formControlName="phone" inputId="phone" class="w-full"
+                  [ngClass]="{'ng-invalid ng-dirty': isSubmitted && userForm['phone'].errors }">
+                <small id="phone" *ngIf="isSubmitted && userForm['phone'].errors" class="p-error block">Phone
+                  is not
+                  available.</small>
+              </div>
+              <div class="field col">
+                <label for="street">Street</label>
+                <input pInputText id="street" formControlName="street" aria-describedby="street"
+                  [ngClass]="{'ng-invalid ng-dirty': isSubmitted && userForm['street'].errors}">
+                <small id="street" *ngIf="isSubmitted && userForm['street'].errors" class="p-error block">Street
+                  is not
+                  available.</small>
+              </div>
+              <div class="field col-2">
+                <label for="isAdmin">Admin</label>
+                <div>
+                  <p-inputSwitch id="isAdmin" formControlName="isAdmin" aria-describedby="isAdmin" class="w-full">
+                  </p-inputSwitch>
+                </div>
+              </div>
+            </div>
+
+            <div class="formgrid grid p-fluid">
+              <div class="field col">
+                <label for="apartment">Apartment</label>
+                <input pInputText formControlName="apartment" mode="decimal" inputId="apartment" class="w-full"
+                  [ngClass]="{'ng-invalid ng-dirty': isSubmitted && userForm['apartment'].errors }">
+              </div>
+              <div class="field col">
+                <label for="zip">Zip</label>
+                <input pInputText formControlName="zip" mode="decimal" inputId="zip" class="w-full" maxlength="6"
+                  placeholder="442704" [ngClass]="{'ng-invalid ng-dirty': isSubmitted && userForm['zip'].errors}">
+              </div>
+              <div class="field col">
+                <label for="city">City</label>
+                <input pInputText formControlName="city" mode="decimal" inputId="city" class="w-full"
+                  [ngClass]="{'ng-invalid ng-dirty': isSubmitted && userForm['city'].errors }">
+              </div>
+              <div class="field col">
+                <label for="country">Country</label>
+                <p-dropdown id="category" [options]="countries" formControlName="country" aria-describedby="country"
+                  optionLabel="name" optionValue="id" [filter]="true" filterBy="name" placeholder="Select a country"
+                  [ngClass]="{'ng-invalid ng-dirty': isSubmitted && userForm['country'].errors}">
+                </p-dropdown>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col-12">
+        <p-toolbar>
+          <div class="p-toolbar-group-left"></div>
+          <div class="p-toolbar-group-right">
+            <button pButton type="button" [label]="editMode ? 'Update' : 'Create'" icon="pi pi-plus"
+              class="p-button-primary mr-2" (click)="onSubmit()"></button>
+            <button pButton pRipple type="button" label="Clear" class="p-button-secondary p-button-text"
+              icon="pi pi-undo" (click)="resetForm()"></button>
+          </div>
+        </p-toolbar>
+      </div>
+    </div>
+  </p-card>
+</div>

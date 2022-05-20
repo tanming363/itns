@@ -1,0 +1,208 @@
+<p-toast></p-toast>
+<div class="admin-page">
+            <p-card [header]="editMode ? 'Edit Product':'Add Product' " subheader="Add and edit Product">
+                        <div class="grid">
+                                    <div class="col-12">
+                                                <p-toolbar>
+                                                            <div class="p-toolbar-group-right">
+                                                                        <button pButton type="button" label="Back"
+                                                                                    icon="pi pi-arrow-left"
+                                                                                    class="p-button-secondary"
+                                                                                    (click)="goBack()">
+                                                                        </button>
+                                                            </div>
+                                                </p-toolbar>
+                                    </div>
+                        </div>
+                        <div class="grid">
+                                    <div class="col-12">
+                                                <form [formGroup]="form">
+                                                            <div class="card">
+                                                                        <div class="formgrid grid p-fluid">
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="name">Name</label>
+                                                                                                <input id="name"
+                                                                                                            type="text"
+                                                                                                            pInputText
+                                                                                                            formControlName="name"
+                                                                                                            aria-describedby="name"
+                                                                                                            class="w-full"
+                                                                                                            [ngClass]="{'ng-invalid ng-dirty': isSubmitted && productForm['name'].errors}" />
+                                                                                                <small id="name"
+                                                                                                            *ngIf="isSubmitted && productForm['name'].errors"
+                                                                                                            class="p-error block">Name
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="brand">Brand</label>
+                                                                                                <input id="brand"
+                                                                                                            type="text"
+                                                                                                            pInputText
+                                                                                                            formControlName="brand"
+                                                                                                            aria-describedby="brand"
+                                                                                                            class="w-full"
+                                                                                                            [ngClass]="{'ng-invalid ng-dirty': isSubmitted && productForm['brand'].errors}" />
+                                                                                                <small id="brand"
+                                                                                                            *ngIf="isSubmitted && productForm['brand'].errors"
+                                                                                                            class="p-error block">brand
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="price">Price</label>
+                                                                                                <p-inputNumber
+                                                                                                            formControlName="price"
+                                                                                                            mode="decimal"
+                                                                                                            inputId="price"
+                                                                                                            [useGrouping]="false"
+                                                                                                            class="w-full"
+                                                                                                            [ngClass]="{'ng-invalid ng-dirty': isSubmitted && productForm['price'].errors}">
+                                                                                                </p-inputNumber>
+                                                                                                <small id="price"
+                                                                                                            *ngIf="isSubmitted && productForm['price'].errors"
+                                                                                                            class="p-error block">price
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+                                                                        </div>
+                                                                        <div class="formgrid grid p-fluid">
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="countInStock">Count
+                                                                                                            In
+                                                                                                            Stock</label>
+                                                                                                <p-inputNumber
+                                                                                                            formControlName="countInStock"
+                                                                                                            mode="decimal"
+                                                                                                            inputId="countInStock"
+                                                                                                            [useGrouping]="false"
+                                                                                                            class="w-full"
+                                                                                                            [ngClass]="{'ng-invalid ng-dirty': isSubmitted && productForm['countInStock'].errors}">
+                                                                                                </p-inputNumber>
+                                                                                                <small id="countInStock"
+                                                                                                            *ngIf="isSubmitted && productForm['countInStock'].errors"
+                                                                                                            class="p-error block">countInStock
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="category">Category</label>
+                                                                                                <p-dropdown id="category"
+                                                                                                            [options]="categories"
+                                                                                                            formControlName="category"
+                                                                                                            aria-describedby="category"
+                                                                                                            optionLabel="name"
+                                                                                                            optionValue="id"
+                                                                                                            [filter]="true"
+                                                                                                            filterBy="name"
+                                                                                                            placeholder="Select a Category"
+                                                                                                            [ngClass]="{'ng-invalid ng-dirty': isSubmitted && productForm['category'].errors}">
+                                                                                                </p-dropdown>
+                                                                                                <small id="category"
+                                                                                                            *ngIf="isSubmitted && productForm['category'].errors"
+                                                                                                            class="p-error block">Category
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+
+                                                                                    <div class="field col">
+                                                                                                <label for="isFeatured">Is
+                                                                                                            Featured</label>
+                                                                                                <div>
+                                                                                                            <p-inputSwitch
+                                                                                                                        id="isFeatured"
+                                                                                                                        formControlName="isFeatured"
+                                                                                                                        aria-describedby="isFeatured"
+                                                                                                                        class="w-full">
+                                                                                                            </p-inputSwitch>
+                                                                                                </div>
+                                                                                    </div>
+                                                                        </div>
+
+                                                                        <div class="formgrid grid p-fluid">
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="description">Description</label>
+                                                                                                <textarea pInputTextarea
+                                                                                                            [rows]="7"
+                                                                                                            id="description"
+                                                                                                            formControlName="description"
+                                                                                                            aria-describedby="description"
+                                                                                                            [ngClass]="{'ng-invalid ng-dirty': isSubmitted && productForm['description'].errors}"></textarea>
+
+                                                                                                <small id="description"
+                                                                                                            *ngIf="isSubmitted && productForm['description'].errors"
+                                                                                                            class="p-error block">description
+                                                                                                            is not
+                                                                                                            available.</small>
+                                                                                    </div>
+                                                                        </div>
+                                                                        <div class="formgrid grid p-fluid">
+                                                                                    <div class="field col">
+                                                                                                <label
+                                                                                                            for="richDescription">Product
+                                                                                                            Details
+                                                                                                </label>
+                                                                                                <p-editor id="richDescription"
+                                                                                                            formControlName="richDescription"
+                                                                                                            aria-describedby="richDescription"
+                                                                                                            [style]="{'height':'320px'}">
+                                                                                                </p-editor>
+                                                                                    </div>
+                                                                        </div>
+                                                            </div>
+                                                            <div class="formgrid grid p-fluid">
+                                                                        <div class="field col">
+                                                                                    <label for="image">Main
+                                                                                                Image</label>
+                                                                                    <input type="file" id="image"
+                                                                                                class="p-inputtext"
+                                                                                                [ngClass]="{'ng-invalid ng-dirty': isSubmitted && productForm['image'].errors}"
+                                                                                                accept="image/*"
+                                                                                                #imageInput
+                                                                                                (change)="onImageUpload($event)">
+                                                                                    <div class="my-2">
+                                                                                                <img height="100"
+                                                                                                            *ngIf="imageDisplay"
+                                                                                                            [src]="imageDisplay"
+                                                                                                            [alt]="imageDisplay">
+                                                                                    </div>
+                                                                                    <small id="image"
+                                                                                                *ngIf="isSubmitted && productForm['image'].errors"
+                                                                                                class="p-error block">Image
+                                                                                                is not
+                                                                                                available.
+                                                                                    </small>
+                                                                        </div>
+                                                            </div>
+                                                </form>
+                                    </div>
+                        </div>
+                        <div class="grid">
+                                    <div class="col-12">
+                                                <p-toolbar>
+                                                            <div class="p-toolbar-group-left"></div>
+                                                            <div class="p-toolbar-group-right">
+                                                                        <button pButton type="button"
+                                                                                    [label]="editMode ? 'Update' : 'Create' "
+                                                                                    icon="pi pi-plus"
+                                                                                    class="p-button-primary mr-2"
+                                                                                    (click)="onSubmit()">
+                                                                        </button>
+                                                                        <button pButton pRipple type="button"
+                                                                                    label="Clear"
+                                                                                    class="p-button-secondary p-button-text"
+                                                                                    icon="pi pi-undo"
+                                                                                    (click)="resetForm()">
+                                                                        </button>
+                                                            </div>
+                                                </p-toolbar>
+                                    </div>
+                        </div>
+            </p-card>
+</div>
